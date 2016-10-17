@@ -8,7 +8,7 @@ var Schema = mongoose.Schema;
 
 var userSchema = new Schema({ //Creamos un nuevo Schema de usuario
     name : String,
-    age : String,
+    age : Number,
     city : String
 });
 
@@ -18,19 +18,11 @@ var User = mongoose.model('users', userSchema);
 
 //Function to get users
 function findUsers(res){
-    var users = [];
-
-    User.find(function (err,User) { // Metodo de mongo para encontrar documentos
+    User.find(function (err,users) { // Metodo de mongo para encontrar documentos
         if(err){
             return console.error(err);
         }
-        else{
-            User.forEach(function(user){ //Por cada usuario o documento encontrado en la coleccion
-                users.push(user); //Agregamos uno al array de users
-            });
-
-            res.send(users); // mandamos la lista de usuarios para ser consumidos
-        }
+        res.send(users);
     });
 }
 
@@ -77,7 +69,7 @@ function deleteUsers(res,body){
 }
 
 
-module.exports.user = User;
+
 module.exports.findUsers = findUsers;
 module.exports.saveUsers = saveUsers;
 module.exports.updateUsers = updateUsers;
