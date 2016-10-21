@@ -12,7 +12,7 @@ var app = express();
 var port = process.env.PORT || 3000; //obtenemos el puerto del servidor
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended : true}));
+
 
 
 app.get('/api', function(req,res){
